@@ -10,7 +10,7 @@ import (
 type LogRepository interface {
 	Parse(filePath string) ([]log.Log, error)
 	Filter(logs []log.Log, input inputcommand.InputCommand) ([]log.Log, error)
-	Statistic(logs []log.Log) string
+	Statistic(logs []log.Log)
 }
 
 type Analyzer struct {
@@ -37,6 +37,6 @@ func (a *Analyzer) FilterLogs(logs []log.Log, input inputcommand.InputCommand) (
 	return result, nil
 }
 
-// func (a *Analyzer) LogsStat() {
-// 	a.logRepository.Statistic()
-// }
+func (a *Analyzer) LogsStat(logs []log.Log) {
+	a.logRepository.Statistic(logs)
+}

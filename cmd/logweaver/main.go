@@ -85,6 +85,6 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(logs)
-	// logService.LogsStat()
+
+	logService.LogsStat(logs)
 }

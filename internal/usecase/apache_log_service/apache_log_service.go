@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"time"
 
+	basicstats "github.com/NikitaTumanov/Web-Application-Log-Aggregator-Analyzer/internal/entity/basic_stats"
 	inputcommand "github.com/NikitaTumanov/Web-Application-Log-Aggregator-Analyzer/internal/entity/input_command"
 	"github.com/NikitaTumanov/Web-Application-Log-Aggregator-Analyzer/internal/entity/log"
 	apachelogparser "github.com/NikitaTumanov/Web-Application-Log-Aggregator-Analyzer/pkg/apache_log_parser"
@@ -92,6 +93,7 @@ func (a *ApacheLogService) Filter(logs []log.Log, input inputcommand.InputComman
 	return logs, nil
 }
 
-func (a *ApacheLogService) Statistic(logs []log.Log) string {
-	return ""
+func (a *ApacheLogService) Statistic(logs []log.Log) {
+	stat := basicstats.GetBasicStats(logs)
+	basicstats.DisplayStats(stat)
 }
