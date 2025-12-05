@@ -14,7 +14,7 @@ import (
 func main() {
 	var (
 		command  string
-		filePath = flag.String("filePath", "", "filePath")
+		filePath = flag.String("file_path", "", "file_path")
 		logType  = flag.String("log_type", "", "log_type")
 
 		ip        = flag.String("ip", "", "ip")
@@ -69,8 +69,22 @@ func main() {
 		// с помощью потоков (каналов) построчно фильтровать и записывать логи в список
 		// после чего будет вызываться визуализатор статистики логов
 		logService.SetLogService(&apachelogservice.ApacheLogService{})
+	default:
+		fmt.Println("incorrect log type")
+		return
 	}
-	logService.ParseLogs(input.FilePath)
-	logService.FilterLogs()
-	logService.LogsStat()
+
+	logs, err := logService.ParseLogs(input.FilePath)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	logs, err = logService.FilterLogs(logs, *input)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(logs)
+	// logService.LogsStat()
 }

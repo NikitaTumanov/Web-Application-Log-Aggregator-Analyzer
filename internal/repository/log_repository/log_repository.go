@@ -29,10 +29,14 @@ func (a *Analyzer) ParseLogs(filePath string) ([]log.Log, error) {
 	return result, nil
 }
 
-func (a *Analyzer) FilterLogs() {
-	a.logRepository.Filter()
+func (a *Analyzer) FilterLogs(logs []log.Log, input inputcommand.InputCommand) ([]log.Log, error) {
+	result, err := a.logRepository.Filter(logs, input)
+	if err != nil {
+		return nil, fmt.Errorf("a.logRepository.Filter: %w", err)
+	}
+	return result, nil
 }
 
-func (a *Analyzer) LogsStat() {
-	a.logRepository.Statistic()
-}
+// func (a *Analyzer) LogsStat() {
+// 	a.logRepository.Statistic()
+// }
