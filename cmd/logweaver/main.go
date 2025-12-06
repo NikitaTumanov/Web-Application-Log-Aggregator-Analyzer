@@ -8,7 +8,7 @@ import (
 
 	inputcommand "github.com/NikitaTumanov/Web-Application-Log-Aggregator-Analyzer/internal/entity/input_command"
 	logrepository "github.com/NikitaTumanov/Web-Application-Log-Aggregator-Analyzer/internal/repository/log_repository"
-	apachelogservice "github.com/NikitaTumanov/Web-Application-Log-Aggregator-Analyzer/internal/usecase/apache_log_service"
+	apachelogservice "github.com/NikitaTumanov/Web-Application-Log-Aggregator-Analyzer/internal/service/apache_log_service"
 )
 
 func main() {
